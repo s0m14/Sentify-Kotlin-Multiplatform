@@ -56,35 +56,35 @@ class AppealScreen : Screen {
             OutlinedTextField(
                 value = subjectOfAppeal,
                 onValueChange = { subjectOfAppeal = it },
-                label = { Text(text = "Partner's name", fontSize = 20.sp) },
+                label = { Text(text = "Subject of appeal", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp).padding(top = 120.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = detailedExpalanation,
                 onValueChange = { detailedExpalanation = it },
-                label = { Text(text = "Shared goals", fontSize = 20.sp) },
+                label = { Text(text = "Details", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = desiredOutcomes,
                 onValueChange = { desiredOutcomes = it },
-                label = { Text(text = "Challenges", fontSize = 20.sp) },
+                label = { Text(text = "What outcome are you hoping for", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = yourName,
                 onValueChange = { yourName = it },
-                label = { Text(text = "Memories", fontSize = 20.sp) },
+                label = { Text(text = "Your name", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = urgency,
                 onValueChange = { urgency = it },
-                label = { Text(text = "Your name", fontSize = 20.sp) },
+                label = { Text(text = "How urgent is your appeal?", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp)
             )
             Button(

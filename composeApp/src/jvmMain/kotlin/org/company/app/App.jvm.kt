@@ -8,7 +8,7 @@ import ui.TopBar
 import java.awt.Desktop
 import java.net.URI
 @Composable
-fun App() {
+fun AppLaunch() {
     Scaffold(
         topBar = { TopBar() }
     ) {
