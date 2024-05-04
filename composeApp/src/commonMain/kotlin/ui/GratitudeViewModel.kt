@@ -1,15 +1,14 @@
 package ui
-import androidx.compose.runtime.mutableStateListOf
+import data.ChatCompletion
+import data.Message
+import data.OpenAIRequest
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import io.ktor.client.*
-import io.ktor.client.call.body
-import io.ktor.client.call.receive
 import io.ktor.client.engine.*
 import io.ktor.client.request.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.http.*
 import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import io.ktor.serialization.kotlinx.json.json
@@ -17,18 +16,9 @@ import io.ktor.util.InternalAPI
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-
-
 class GratitudeViewModel : ViewModel(){
 
     private lateinit var response: HttpResponse
-    var responseBody : String = ""
-
-    val list = listOf<Message>(Message("user","Arsen"))
-
-    val openAIRequest = OpenAIRequest(model = "gpt-3.5-turbo",list,1)
-
-    val json = Json.encodeToString(openAIRequest)
 
     val client = HttpClient(CIO) {
         install(ContentNegotiation) {
@@ -39,9 +29,6 @@ class GratitudeViewModel : ViewModel(){
                 explicitNulls = false
             })
         }
-        defaultRequest {
-        }
-
 
     }
     @OptIn(InternalAPI::class)
@@ -61,15 +48,6 @@ class GratitudeViewModel : ViewModel(){
 
         } catch (e: Exception) {
             e.printStackTrace()
-        }
-    }
-
-    @OptIn(InternalAPI::class)
-    suspend fun getAnswer():String {
-        if(response.status.description == "OK"){
-            return response.bodyAsText()
-        }else{
-            return "NO VALUE"
         }
     }
 

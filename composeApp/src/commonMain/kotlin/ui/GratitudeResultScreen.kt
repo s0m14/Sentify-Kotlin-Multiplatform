@@ -1,6 +1,5 @@
 package ui
 
-import ApologizeViewModel
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,13 +18,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.jetbrains.compose.resources.Font
 
 import cafe.adriel.voyager.core.screen.Screen
-import sentifyandroid.composeapp.generated.resources.Res
+import data.GratitudeData
+import data.Message
 
 data class GratitudeResultScreen(val gratitudeData: GratitudeData) : Screen {
     val viewModel = GratitudeViewModel()

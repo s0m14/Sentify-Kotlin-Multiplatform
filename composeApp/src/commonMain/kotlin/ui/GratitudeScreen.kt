@@ -25,6 +25,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import data.GratitudeData
 
 
 class GratitudeScreen : Screen {
@@ -40,8 +41,6 @@ class GratitudeScreen : Screen {
     @Composable
     fun ComplimentScreen() {
         navigator = LocalNavigator.currentOrThrow
-
-        val viewModel = GratitudeViewModel()
 
         var gratitudeEntry by remember{ mutableStateOf("") }
         var reflection by remember{ mutableStateOf("") }

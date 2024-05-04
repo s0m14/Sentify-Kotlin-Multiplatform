@@ -1,5 +1,8 @@
 package ui
 
+import data.ChatCompletion
+import data.Message
+import data.OpenAIRequest
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
@@ -16,18 +19,9 @@ import io.ktor.serialization.kotlinx.json.json
 import io.ktor.util.InternalAPI
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-
-
 class LoveViewModel : ViewModel(){
 
         private lateinit var response: HttpResponse
-        var responseBody : String = ""
-
-        val list = listOf<Message>(Message("user","Arsen"))
-
-        val openAIRequest = OpenAIRequest(model = "gpt-3.5-turbo",list,1)
-
-        val json = Json.encodeToString(openAIRequest)
 
         val client = HttpClient(CIO) {
             install(ContentNegotiation) {
@@ -42,7 +36,7 @@ class LoveViewModel : ViewModel(){
         }
         @OptIn(InternalAPI::class)
         @kotlinx.serialization.ExperimentalSerializationApi
-        suspend fun sendLove(message:List<Message>,apiKey: String) {
+        suspend fun sendLove(message:List<Message>, apiKey: String) {
             try {
                 val openAIRequest = OpenAIRequest(model = "gpt-3.5-turbo", messages = message, temperature = 1)
 
@@ -57,15 +51,6 @@ class LoveViewModel : ViewModel(){
 
             } catch (e: Exception) {
                 e.printStackTrace()
-            }
-        }
-
-        @OptIn(InternalAPI::class)
-        suspend fun getAnswer():String {
-            if(response.status.description == "OK"){
-                return response.bodyAsText()
-            }else{
-                return "NO VALUE"
             }
         }
 

@@ -30,7 +30,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import data.quotes
-import data.icons
+import network.ConnectivityChecker
 import org.jetbrains.compose.resources.painterResource
 import sentifyandroid.composeapp.generated.resources.Res
 import sentifyandroid.composeapp.generated.resources.logo
@@ -58,7 +58,7 @@ class EntryScreen : Screen {
 
         LaunchedEffect(Unit) {
             val connectivityChecker = ConnectivityChecker()
-            val apiKey = "sk-proj-7uRYYbBekvLy9fKn8Dq3T3BlbkFJlSkzPVgrIXf6zOh529KL" // Replace with your OpenAI API key
+            val apiKey = "sk-proj-7uRYYbBekvLy9fKn8Dq3T3BlbkFJlSkzPVgrIXf6zOh529KL"
             isInternetAvailable = connectivityChecker.isInternetAvailable(apiKey)
         }
 
@@ -101,16 +101,6 @@ class EntryScreen : Screen {
                 fontFamily = FontFamily.Monospace,
                 modifier = Modifier.padding(top = 10.dp, start = 400.dp)
             )
-
-            if(isInternetAvailable){
-                Text(
-                    text = "Connected",fontSize = 10.sp
-                )
-            }else{
-                Text(
-                    text = "No connection",fontSize = 10.sp
-                )
-            }
         }
     }
 }

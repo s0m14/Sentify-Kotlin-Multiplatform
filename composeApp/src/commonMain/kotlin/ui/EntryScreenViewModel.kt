@@ -10,12 +10,6 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 
-import java.io.IOException
-import java.net.HttpURLConnection
-import java.net.InetSocketAddress
-import java.net.Socket
-import java.net.URL
-
 class EntryScreenViewModel : ViewModel() {
 
     private val client = HttpClient()

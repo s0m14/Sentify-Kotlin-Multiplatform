@@ -13,9 +13,11 @@ import org.jetbrains.compose.resources.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.jetbrains.compose.resources.stringResource
 
 import sentifyandroid.composeapp.generated.resources.Res
 import sentifyandroid.composeapp.generated.resources.logo
+import sentifyandroid.composeapp.generated.resources.top_bar_description
 
 @Composable
 fun TopBar(){
@@ -27,7 +29,7 @@ fun TopBar(){
         )
 
         Text(
-            text = "Let's express your feelings!",
+            text = stringResource(Res.string.top_bar_description),
             fontSize = 80.sp,
             modifier = Modifier.padding(top = 10.dp)
         )

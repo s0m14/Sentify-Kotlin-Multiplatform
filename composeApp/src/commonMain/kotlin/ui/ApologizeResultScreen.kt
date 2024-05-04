@@ -19,14 +19,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 import cafe.adriel.voyager.core.screen.Screen
+import data.ApologizeData
+import data.Message
 
 
-data class ApologizeResultScreen(val inputData: InputData) : Screen {
+data class ApologizeResultScreen(val inputData: ApologizeData) : Screen {
     val viewModel = ApologizeViewModel()
 
     val prompt = "Make apology message. Here is details:" + inputData.recipentName + "," + inputData.reason + "," + inputData.degreeOfRegret + "," + inputData.commitmentToChange

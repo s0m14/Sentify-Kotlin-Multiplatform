@@ -1,6 +1,5 @@
 package ui
 
-import ApologizeViewModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,14 +19,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import org.jetbrains.compose.resources.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import data.ApologizeData
 
 
 class ApologizeScreen : Screen {
@@ -41,8 +39,6 @@ class ApologizeScreen : Screen {
     fun ApologizeScreen(modifier: Modifier) {
 
         navigator = LocalNavigator.currentOrThrow
-
-        val viewModel = ApologizeViewModel()
 
         var recipentName by remember{ mutableStateOf("") }
         var reason by remember{ mutableStateOf("") }
@@ -81,7 +77,7 @@ class ApologizeScreen : Screen {
                 )
 
                 Button(
-                    onClick = {navigator.push(ApologizeResultScreen(InputData(recipentName,reason, degreeOfRegret, commitmentToChange)))},
+                    onClick = {navigator.push(ApologizeResultScreen(ApologizeData(recipentName,reason, degreeOfRegret, commitmentToChange)))},
                     modifier = Modifier.width(200.dp).height(100.dp).padding(top = 60.dp).background(
                         Color.Transparent)
                 ){

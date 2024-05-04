@@ -25,6 +25,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import data.LoveData
 
 class LoveScreen : Screen {
 
@@ -40,8 +41,6 @@ class LoveScreen : Screen {
     fun LoveScreen() {
 
         navigator = LocalNavigator.currentOrThrow
-
-        val viewModel = LoveViewModel()
 
         var partnerName by remember { mutableStateOf("") }
         var goalsAsCouples by remember { mutableStateOf("") }

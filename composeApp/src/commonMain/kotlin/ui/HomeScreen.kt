@@ -19,11 +19,9 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import data.icons
-import model.Quotes
 import sentifyandroid.composeapp.generated.resources.Res
 import sentifyandroid.composeapp.generated.resources.apologise
 import sentifyandroid.composeapp.generated.resources.appealIcon
-import sentifyandroid.composeapp.generated.resources.complimentIcon
 import sentifyandroid.composeapp.generated.resources.gratitudeIcon
 import sentifyandroid.composeapp.generated.resources.loveIcon
 
@@ -38,20 +36,6 @@ class HomeScreen : Screen {
 
     @Composable
     fun HomeScreen(modifier: Modifier) {
-        val quotes = listOf(
-            Quotes("If you have the words, there's always a chance that you'll find the way.","― Seamus Heaney"),
-            Quotes("Keep your best wishes, close to your heart and watch what happens","-T.DeLiso"),
-            Quotes("It is beautiful to express love and even more beautiful to feel it.","-D.Stojanovic")
-        )
-
-        val icons = listOf(
-            Res.drawable.apologise,
-            Res.drawable.gratitudeIcon,
-            Res.drawable.appealIcon,
-            Res.drawable.loveIcon
-        )
-
-
         navigator = LocalNavigator.currentOrThrow
         val checked = remember { mutableStateOf(false) }
 
