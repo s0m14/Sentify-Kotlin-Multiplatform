@@ -77,4 +77,13 @@ data class GratitudeData(
     val dailyBlessing : String
 )
 
+@Serializable
+data class AppealData(
+    val subjectOfAppeal : String,
+    val detailedExplanation : String,
+    val desiredOutcomes : String,
+    val yourName : String,
+    val urgency : String
+)
+
 

@@ -24,6 +24,8 @@ import sentifyandroid.composeapp.generated.resources.Res
 import sentifyandroid.composeapp.generated.resources.apologise
 import sentifyandroid.composeapp.generated.resources.appealIcon
 import sentifyandroid.composeapp.generated.resources.complimentIcon
+import sentifyandroid.composeapp.generated.resources.gratitudeIcon
+import sentifyandroid.composeapp.generated.resources.loveIcon
 
 class HomeScreen : Screen {
     private lateinit var navigator: Navigator
@@ -44,9 +46,9 @@ class HomeScreen : Screen {
 
         val icons = listOf(
             Res.drawable.apologise,
-            Res.drawable.complimentIcon,
-            Res.drawable.apologise,
-            Res.drawable.appealIcon
+            Res.drawable.gratitudeIcon,
+            Res.drawable.appealIcon,
+            Res.drawable.loveIcon
         )
 
 
@@ -60,6 +62,9 @@ class HomeScreen : Screen {
                     onCheckedChange = {
                         checked.value = it;
                         if(icons[index] == Res.drawable.apologise) navigator.push(ApologizeScreen())
+                        else if(icons[index] == Res.drawable.loveIcon) navigator.push(LoveScreen())
+                        else if(icons[index] == Res.drawable.appealIcon) navigator.push(AppealScreen())
+                        else if(icons[index] == Res.drawable.gratitudeIcon) navigator.push(GratitudeScreen())
                     },modifier = Modifier.padding(end = 250.dp).width(100.dp).height(100.dp)
                 ) {
                     Icon(

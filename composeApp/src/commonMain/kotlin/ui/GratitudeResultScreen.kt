@@ -30,7 +30,7 @@ import sentifyandroid.composeapp.generated.resources.Res
 data class GratitudeResultScreen(val gratitudeData: GratitudeData) : Screen {
     val viewModel = GratitudeViewModel()
 
-    val prompt = "Make apology message. Here is details:" + gratitudeData.gratitudeEntry + "," + gratitudeData.reflection + "," + gratitudeData.dailyBlessing + "," + gratitudeData.simplePleasure
+    val prompt = "Make gratitude message. Here is details:" + gratitudeData.gratitudeEntry + "," + gratitudeData.reflection + "," + gratitudeData.dailyBlessing + "," + gratitudeData.simplePleasure
     @Composable
     override fun Content() {
         HomeScreen().Content()
