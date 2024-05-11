@@ -58,7 +58,7 @@ class EntryScreen : Screen {
 
         LaunchedEffect(Unit) {
             val connectivityChecker = ConnectivityChecker()
-            val apiKey = "sk-proj-7uRYYbBekvLy9fKn8Dq3T3BlbkFJlSkzPVgrIXf6zOh529KL"
+            val apiKey = "sk-proj-u080kiFZ4ov0dgsNU9QYT3BlbkFJ1ROx50wwvPtKgutWRFXm"
             isInternetAvailable = connectivityChecker.isInternetAvailable(apiKey)
         }
 

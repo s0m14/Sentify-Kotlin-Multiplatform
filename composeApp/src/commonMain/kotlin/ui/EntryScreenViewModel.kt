@@ -14,7 +14,7 @@ class EntryScreenViewModel : ViewModel() {
 
     private val client = HttpClient()
 
-    private val apiKey = "sk-proj-7uRYYbBekvLy9fKn8Dq3T3BlbkFJlSkzPVgrIXf6zOh529KL"
+    private val apiKey = "sk-proj-u080kiFZ4ov0dgsNU9QYT3BlbkFJ1ROx50wwvPtKgutWRFXm"
 
     val _uiState : MutableLiveData<Boolean> = MutableLiveData(false)
 

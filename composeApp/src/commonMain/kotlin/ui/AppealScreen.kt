@@ -42,11 +42,11 @@ class AppealScreen : Screen {
 
         navigator = LocalNavigator.currentOrThrow
 
-        var subjectOfAppeal by remember { mutableStateOf("") }
-        var detailedExpalanation by remember { mutableStateOf("") }
+        var purpose by remember { mutableStateOf("") }
+        var targetAudience by remember { mutableStateOf("") }
+        var tone by remember { mutableStateOf("") }
         var desiredOutcomes by remember { mutableStateOf("") }
-        var yourName by remember { mutableStateOf("") }
-        var urgency by remember{ mutableStateOf("") }
+
 
         Column(
             verticalArrangement = Arrangement.Center,
@@ -54,16 +54,16 @@ class AppealScreen : Screen {
         ) {
 
             OutlinedTextField(
-                value = subjectOfAppeal,
-                onValueChange = { subjectOfAppeal = it },
-                label = { Text(text = "Subject of appeal", fontSize = 20.sp) },
+                value = purpose,
+                onValueChange = { purpose = it },
+                label = { Text(text = "What is the purpose of your message? Have you been treated unfairly? Do you want someone to reconsider a decision they made about you? Do you have any unsaid things?", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp).padding(top = 120.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
-                value = detailedExpalanation,
-                onValueChange = { detailedExpalanation = it },
-                label = { Text(text = "Details", fontSize = 20.sp) },
+                value = targetAudience,
+                onValueChange = { targetAudience = it },
+                label = { Text(text =  "Who is the intended audience for the message? Provide details such as age, gender, location, interests and any other relevant information", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
@@ -75,23 +75,23 @@ class AppealScreen : Screen {
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
-                value = yourName,
-                onValueChange = { yourName = it },
-                label = { Text(text = "Your name", fontSize = 20.sp) },
+                value = tone,
+                onValueChange = { tone = it },
+                label = { Text(text = "Is it formal,informal,friendly,urgent?", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
-                value = urgency,
-                onValueChange = { urgency = it },
-                label = { Text(text = "How urgent is your appeal?", fontSize = 20.sp) },
+                value = desiredOutcomes,
+                onValueChange = { desiredOutcomes = it },
+                label = { Text(text = "State the outcome you want.", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp)
             )
             Button(
                 onClick = {
                     navigator.push(
                         AppealResultScreen(
-                            AppealData(subjectOfAppeal,detailedExpalanation,desiredOutcomes,yourName, urgency)
+                            AppealData(purpose, targetAudience, tone, desiredOutcomes)
                         )
                     )
                 },

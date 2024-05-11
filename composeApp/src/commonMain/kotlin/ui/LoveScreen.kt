@@ -42,11 +42,10 @@ class LoveScreen : Screen {
 
         navigator = LocalNavigator.currentOrThrow
 
-        var partnerName by remember { mutableStateOf("") }
-        var goalsAsCouples by remember { mutableStateOf("") }
-        var challenges by remember { mutableStateOf("") }
+        var recipentName by remember { mutableStateOf("") }
+        var relationship by remember { mutableStateOf("") }
+        var shareSpecificQualities by remember { mutableStateOf("") }
         var favoriteMemory by remember { mutableStateOf("") }
-        var from by remember { mutableStateOf("") }
 
         Column(
             verticalArrangement = Arrangement.Center,
@@ -54,23 +53,30 @@ class LoveScreen : Screen {
         ) {
 
             OutlinedTextField(
-                value = partnerName,
-                onValueChange = { partnerName = it },
-                label = { Text(text = "Partner's name", fontSize = 20.sp) },
+                value = recipentName,
+                onValueChange = { recipentName = it },
+                label = { Text(text = "Recipient's name", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp).padding(top = 120.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
-                value = goalsAsCouples,
-                onValueChange = { goalsAsCouples = it },
-                label = { Text(text = "Shared goals", fontSize = 20.sp) },
+                value = relationship,
+                onValueChange = { relationship = it },
+                label = { Text(text =  "What is your relationship with the recipient? Is it your friend, romantic partner, spouse, relative?", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
-                value = challenges,
-                onValueChange = { challenges = it },
+                value = shareSpecificQualities,
+                onValueChange = { shareSpecificQualities = it },
                 label = { Text(text = "Challenges", fontSize = 20.sp) },
+                modifier = Modifier.width(1200.dp)
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+            OutlinedTextField(
+                value = favoriteMemory,
+                onValueChange = { favoriteMemory = it },
+                label = { Text(text = "Share specific qualities, traits, or actions that you admire", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
@@ -80,23 +86,12 @@ class LoveScreen : Screen {
                 label = { Text(text = "Memories", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp)
             )
-            Spacer(modifier = Modifier.height(20.dp))
-            OutlinedTextField(
-                value = from,
-                onValueChange = { from = it },
-                label = { Text(text = "Your name", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp)
-            )
             Button(
                 onClick = {
                     navigator.push(
                         LoveResultScreen(
                             LoveData(
-                                partnerName,
-                                goalsAsCouples,
-                                challenges,
-                                favoriteMemory,
-                                from
+                                recipentName, relationship, shareSpecificQualities, favoriteMemory
                             )
                         )
                     )

@@ -43,9 +43,8 @@ class GratitudeScreen : Screen {
         navigator = LocalNavigator.currentOrThrow
 
         var gratitudeEntry by remember{ mutableStateOf("") }
-        var reflection by remember{ mutableStateOf("") }
-        var simplePleasure by remember { mutableStateOf("") }
-        var dailyBlessing by remember { mutableStateOf("") }
+        var reason by remember{ mutableStateOf("") }
+        var tone by remember { mutableStateOf("") }
 
         Column(verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize()) {
@@ -53,34 +52,28 @@ class GratitudeScreen : Screen {
             OutlinedTextField(
                 value = gratitudeEntry,
                 onValueChange = { gratitudeEntry = it },
-                label = { Text(text = "For what are you grateful?", fontSize = 20.sp) },
+                label = { Text(text = "Who is your recipient? It can be absolutely anyone, even you!", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp).padding(top = 120.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
-                value = reflection,
-                onValueChange = { reflection = it },
-                label = { Text(text = "Why are you grateful ?", fontSize = 20.sp) },
+                value = reason,
+                onValueChange = { reason = it },
+                label = { Text(text = "Reason for gratitude.Is it for a specific occasion or simply a spontaneous expression of thanks?", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
-                value = simplePleasure,
-                onValueChange = { simplePleasure = it },
-                label = { Text(text = "Write down your recent small pleasures", fontSize = 20.sp) },
+                value = tone,
+                onValueChange = { tone = it },
+                label = { Text(text = "Do you want it to be warm and heartfelt, casual and friendly, or formal and respectful?", fontSize = 20.sp) },
                 modifier = Modifier.width(1200.dp)
             )
-            Spacer(modifier = Modifier.height(20.dp))
-            OutlinedTextField(
-                value = dailyBlessing,
-                onValueChange = { dailyBlessing = it },
-                label = { Text(text = "You blessed to have in your life", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp)
-            )
+
             Button(
                 onClick = {
                     navigator.push(
-                        GratitudeResultScreen(GratitudeData(gratitudeEntry, reflection, simplePleasure, dailyBlessing))
+                        GratitudeResultScreen(GratitudeData(gratitudeEntry,reason, tone))
                     )
                 },
                 modifier = Modifier.width(200.dp).height(100.dp).padding(top = 60.dp).background(

@@ -4,9 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AppealData(
-    val subjectOfAppeal : String,
-    val detailedExplanation : String,
-    val desiredOutcomes : String,
-    val yourName : String,
-    val urgency : String
+    val purpose : String,
+    val targetAudience : String,
+    val tone : String,
+    val desiredOutcomes : String
 )

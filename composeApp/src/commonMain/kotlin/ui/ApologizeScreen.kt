@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
@@ -40,44 +41,38 @@ class ApologizeScreen : Screen {
 
         navigator = LocalNavigator.currentOrThrow
 
-        var recipentName by remember{ mutableStateOf("") }
-        var reason by remember{ mutableStateOf("") }
-        var degreeOfRegret by remember { mutableStateOf("") }
-        var commitmentToChange by remember{ mutableStateOf("") }
+        val focusManager = LocalFocusManager.current
+
+        var relationship by remember{ mutableStateOf("") }
+        var natureOfTheMistake by remember{ mutableStateOf("") }
+        var commitmentToChange by remember { mutableStateOf("") }
 
         Column(verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize()) {
 
                 OutlinedTextField(
-                    value = recipentName,
-                    onValueChange = { recipentName = it },
-                    label = { Text(text = "Recipent's name", fontSize = 20.sp)},
+                    value = relationship,
+                    onValueChange = { relationship = it },
+                    label = { Text(text = "Relationship with recipent.Is it your friend,colleague or family member", fontSize = 20.sp)},
                     modifier = Modifier.width(1200.dp).padding(top = 120.dp)
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 OutlinedTextField(
-                    value = reason,
-                    onValueChange = { reason = it },
-                    label = { Text(text = "Reason", fontSize = 20.sp)},
-                    modifier = Modifier.width(1200.dp)
-                )
-                Spacer(modifier = Modifier.height(20.dp))
-                OutlinedTextField(
-                    value = degreeOfRegret,
-                    onValueChange = {degreeOfRegret = it},
-                    label = {Text(text = "Degree of regret",fontSize = 20.sp)},
+                    value = natureOfTheMistake,
+                    onValueChange = { natureOfTheMistake = it },
+                    label = { Text(text = "Describe the mistake that occured.Provide specific details what went wrong", fontSize = 20.sp)},
                     modifier = Modifier.width(1200.dp)
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 OutlinedTextField(
                     value = commitmentToChange,
                     onValueChange = {commitmentToChange = it},
-                    label = {Text(text = "Commitment to change",fontSize = 20.sp)},
+                    label = {Text(text = "Explain what you will do to correct the mistake",fontSize = 20.sp)},
                     modifier = Modifier.width(1200.dp)
                 )
 
                 Button(
-                    onClick = {navigator.push(ApologizeResultScreen(ApologizeData(recipentName,reason, degreeOfRegret, commitmentToChange)))},
+                    onClick = {navigator.push(ApologizeResultScreen(ApologizeData(relationship,natureOfTheMistake, commitmentToChange)))},
                     modifier = Modifier.width(200.dp).height(100.dp).padding(top = 60.dp).background(
                         Color.Transparent)
                 ){

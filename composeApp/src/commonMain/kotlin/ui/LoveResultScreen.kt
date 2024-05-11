@@ -49,7 +49,7 @@ class LoveResultScreen(loveData: LoveData) : Screen {
 
         messages.add(Message("user",prompt))
         LaunchedEffect(Unit){
-            viewModel.sendLove(message = messages,"sk-proj-7uRYYbBekvLy9fKn8Dq3T3BlbkFJlSkzPVgrIXf6zOh529KL")
+            viewModel.sendLove(message = messages,"sk-proj-u080kiFZ4ov0dgsNU9QYT3BlbkFJ1ROx50wwvPtKgutWRFXm")
             answer = viewModel.getContent().toString()
         }
 

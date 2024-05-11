@@ -14,5 +14,5 @@ fun main() = application {
     ) {
         window.minimumSize = Dimension(350, 600)
         AppLaunch()
-    }
+    }//.\gradlew :composeApp:run
 }

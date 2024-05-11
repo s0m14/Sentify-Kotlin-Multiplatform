@@ -54,7 +54,7 @@ data class ApologizeResultScreen(val inputData: ApologizeData) : Screen {
 
         messages.add(Message("user",prompt))
         LaunchedEffect(Unit){
-            viewModel.sendApology(message = messages,"sk-proj-7uRYYbBekvLy9fKn8Dq3T3BlbkFJlSkzPVgrIXf6zOh529KL")
+            viewModel.sendApology(message = messages,"sk-proj-u080kiFZ4ov0dgsNU9QYT3BlbkFJ1ROx50wwvPtKgutWRFXm")
             answer = viewModel.getContent().toString()
         }
 
