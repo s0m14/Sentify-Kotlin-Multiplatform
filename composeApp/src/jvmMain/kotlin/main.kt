@@ -1,3 +1,4 @@
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
@@ -8,11 +9,10 @@ import org.company.app.AppLaunch
 
 fun main() = application {
     Window(
-        title = "SentifyAndroid",
-        state = rememberWindowState(width = 800.dp, height = 600.dp),
+        title = "Sentify",
+        state = rememberWindowState(size = DpSize.Unspecified),
         onCloseRequest = ::exitApplication,
     ) {
-        window.minimumSize = Dimension(350, 600)
         AppLaunch()
     }//.\gradlew :composeApp:run
 }

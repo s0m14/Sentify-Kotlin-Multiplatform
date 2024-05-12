@@ -18,7 +18,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
@@ -42,6 +49,8 @@ class GratitudeScreen : Screen {
     fun ComplimentScreen() {
         navigator = LocalNavigator.currentOrThrow
 
+        val focusManager = LocalFocusManager.current
+
         var gratitudeEntry by remember{ mutableStateOf("") }
         var reason by remember{ mutableStateOf("") }
         var tone by remember { mutableStateOf("") }
@@ -53,21 +62,48 @@ class GratitudeScreen : Screen {
                 value = gratitudeEntry,
                 onValueChange = { gratitudeEntry = it },
                 label = { Text(text = "Who is your recipient? It can be absolutely anyone, even you!", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp).padding(top = 120.dp)
+                modifier = Modifier.width(1200.dp).padding(top = 160.dp).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = reason,
                 onValueChange = { reason = it },
                 label = { Text(text = "Reason for gratitude.Is it for a specific occasion or simply a spontaneous expression of thanks?", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp)
+                modifier = Modifier.width(1200.dp).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = tone,
                 onValueChange = { tone = it },
                 label = { Text(text = "Do you want it to be warm and heartfelt, casual and friendly, or formal and respectful?", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp)
+                modifier = Modifier.width(1200.dp).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
             )
 
             Button(
@@ -77,9 +113,17 @@ class GratitudeScreen : Screen {
                     )
                 },
                 modifier = Modifier.width(200.dp).height(100.dp).padding(top = 60.dp).background(
-                    Color.Transparent
-                )
-            ) {
+                    Color.Transparent).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+
+                        else -> false
+                    }
+                })
+             {
                 Text(
                     text = "Submit"
                 )

@@ -18,7 +18,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
@@ -42,6 +49,8 @@ class AppealScreen : Screen {
 
         navigator = LocalNavigator.currentOrThrow
 
+        val focusManager = LocalFocusManager.current
+
         var purpose by remember { mutableStateOf("") }
         var targetAudience by remember { mutableStateOf("") }
         var tone by remember { mutableStateOf("") }
@@ -57,35 +66,64 @@ class AppealScreen : Screen {
                 value = purpose,
                 onValueChange = { purpose = it },
                 label = { Text(text = "What is the purpose of your message? Have you been treated unfairly? Do you want someone to reconsider a decision they made about you? Do you have any unsaid things?", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp).padding(top = 120.dp)
+                modifier = Modifier.width(1200.dp).padding(top = 300.dp).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = targetAudience,
                 onValueChange = { targetAudience = it },
                 label = { Text(text =  "Who is the intended audience for the message? Provide details such as age, gender, location, interests and any other relevant information", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp)
+                modifier = Modifier.width(1200.dp).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = desiredOutcomes,
                 onValueChange = { desiredOutcomes = it },
-                label = { Text(text = "What outcome are you hoping for", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp)
+                label = { Text(text = "What outcomes are you hoping for", fontSize = 20.sp) },
+                modifier = Modifier.width(1200.dp).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = tone,
                 onValueChange = { tone = it },
                 label = { Text(text = "Is it formal,informal,friendly,urgent?", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp)
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            OutlinedTextField(
-                value = desiredOutcomes,
-                onValueChange = { desiredOutcomes = it },
-                label = { Text(text = "State the outcome you want.", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp)
+                modifier = Modifier.width(1200.dp).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
             )
             Button(
                 onClick = {
@@ -95,10 +133,17 @@ class AppealScreen : Screen {
                         )
                     )
                 },
-                modifier = Modifier.width(200.dp).height(100.dp).padding(top = 60.dp).background(
-                    Color.Transparent
-                )
-            ) {
+                modifier =  Modifier.width(200.dp).height(100.dp).padding(top = 60.dp).background(
+                    Color.Transparent).onPreviewKeyEvent {
+                        when {
+                            KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                                focusManager.moveFocus(FocusDirection.Next)
+                                true
+                            }
+
+                            else -> false
+                        }
+                    }) {
                 Text(
                     text = "Submit"
                 )

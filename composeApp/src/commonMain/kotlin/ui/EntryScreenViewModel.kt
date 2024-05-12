@@ -9,15 +9,11 @@ import io.ktor.client.request.headers
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
+import network.ApiKey
 
 class EntryScreenViewModel : ViewModel() {
 
     private val client = HttpClient()
-
-    private val apiKey = "sk-proj-u080kiFZ4ov0dgsNU9QYT3BlbkFJ1ROx50wwvPtKgutWRFXm"
-
-    val _uiState : MutableLiveData<Boolean> = MutableLiveData(false)
-
     suspend fun isInternetAvailable(apiKey: String): Boolean {
         return try {
             val response: HttpResponse = client.get("https://api.openai.com/v1/engines") {
@@ -32,12 +28,10 @@ class EntryScreenViewModel : ViewModel() {
     }
 
     suspend fun getUiState():Boolean{
-        if(isInternetAvailable(apiKey)){
+        if(isInternetAvailable(ApiKey.API_KEY)){
             return true
         }else{
             return false
         }
     }
-
-
 }

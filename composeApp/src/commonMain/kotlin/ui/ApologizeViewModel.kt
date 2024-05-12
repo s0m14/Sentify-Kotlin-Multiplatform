@@ -18,6 +18,8 @@ class ApologizeViewModel : ViewModel(){
 
     private lateinit var response: HttpResponse
 
+    var content : String? = null
+
     val client = HttpClient(CIO) {
         install(ContentNegotiation) {
             json(Json {
@@ -29,6 +31,7 @@ class ApologizeViewModel : ViewModel(){
         }
 
     }
+
     @OptIn(InternalAPI::class)
     @kotlinx.serialization.ExperimentalSerializationApi
     suspend fun sendApology(message:List<Message>,apiKey: String) {
@@ -52,7 +55,7 @@ class ApologizeViewModel : ViewModel(){
         val json = response.bodyAsText().trimIndent()
         val chatCompletion = Json.decodeFromString(ChatCompletion.serializer(), json)
 
-        val content = chatCompletion.choices.firstOrNull()?.message?.content
+        content = chatCompletion.choices.firstOrNull()?.message?.content
 
         return content
     }

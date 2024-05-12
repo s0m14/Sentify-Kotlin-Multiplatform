@@ -18,7 +18,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
@@ -42,6 +49,8 @@ class LoveScreen : Screen {
 
         navigator = LocalNavigator.currentOrThrow
 
+        val focusManager = LocalFocusManager.current
+
         var recipentName by remember { mutableStateOf("") }
         var relationship by remember { mutableStateOf("") }
         var shareSpecificQualities by remember { mutableStateOf("") }
@@ -56,35 +65,79 @@ class LoveScreen : Screen {
                 value = recipentName,
                 onValueChange = { recipentName = it },
                 label = { Text(text = "Recipient's name", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp).padding(top = 120.dp)
+                modifier = Modifier.width(1200.dp).padding(top = 300.dp).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = relationship,
                 onValueChange = { relationship = it },
                 label = { Text(text =  "What is your relationship with the recipient? Is it your friend, romantic partner, spouse, relative?", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp)
+                modifier = Modifier.width(1200.dp).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+                        else -> false
+                    }
+                }
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = shareSpecificQualities,
                 onValueChange = { shareSpecificQualities = it },
                 label = { Text(text = "Challenges", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp)
+                modifier = Modifier.width(1200.dp).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = favoriteMemory,
                 onValueChange = { favoriteMemory = it },
                 label = { Text(text = "Share specific qualities, traits, or actions that you admire", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp)
+                modifier = Modifier.width(1200.dp).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
                 value = favoriteMemory,
                 onValueChange = { favoriteMemory = it },
                 label = { Text(text = "Memories", fontSize = 20.sp) },
-                modifier = Modifier.width(1200.dp)
+                modifier = Modifier.width(1200.dp).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
             )
             Button(
                 onClick = {
@@ -97,9 +150,17 @@ class LoveScreen : Screen {
                     )
                 },
                 modifier = Modifier.width(200.dp).height(100.dp).padding(top = 60.dp).background(
-                    Color.Transparent
-                )
-            ) {
+                    Color.Transparent).onPreviewKeyEvent {
+                    when {
+                        KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                            focusManager.moveFocus(FocusDirection.Next)
+                            true
+                        }
+
+                        else -> false
+                    }
+                })
+            {
                 Text(
                     text = "Submit"
                 )

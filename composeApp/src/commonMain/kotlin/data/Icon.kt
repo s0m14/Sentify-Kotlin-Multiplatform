@@ -6,8 +6,6 @@ import sentifyandroid.composeapp.generated.resources.appealIcon
 import sentifyandroid.composeapp.generated.resources.gratitudeIcon
 import sentifyandroid.composeapp.generated.resources.loveIcon
 
-data class Icon(val resId : Int)
-
 val icons = listOf(
     Res.drawable.apologise,
     Res.drawable.gratitudeIcon,

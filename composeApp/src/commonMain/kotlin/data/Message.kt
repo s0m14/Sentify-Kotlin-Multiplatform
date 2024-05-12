@@ -6,7 +6,4 @@ import kotlinx.serialization.Serializable
 data class Message(
     val role : String,
     val content : String
-){
-    val isUser : Boolean
-        get() = role == "user"
-}
+)

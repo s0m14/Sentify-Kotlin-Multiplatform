@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
 data class Choice(
     val index: Int,
     val message: Message,
-    @Contextual val logprobs: Any?, // Can be null, so use Any?
+    @Contextual val logprobs: Any?,
     val finish_reason: String
 )

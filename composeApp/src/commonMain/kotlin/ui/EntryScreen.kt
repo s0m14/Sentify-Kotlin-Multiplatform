@@ -30,6 +30,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import data.quotes
+import network.ApiKey
 import network.ConnectivityChecker
 import org.jetbrains.compose.resources.painterResource
 import sentifyandroid.composeapp.generated.resources.Res
@@ -43,7 +44,7 @@ class EntryScreen : Screen {
         val navigator = LocalNavigator.currentOrThrow
 
         val viewModel = EntryScreenViewModel()
-        EntryScreen(viewModel)
+        EntryScreen()
         LaunchedEffect(Unit) {
             if (viewModel.getUiState()) {
                 navigator.push(HomeScreen())
@@ -53,12 +54,12 @@ class EntryScreen : Screen {
     }
 
     @Composable
-    fun EntryScreen(viewModel: EntryScreenViewModel) {
+    fun EntryScreen() {
         var isInternetAvailable by remember { mutableStateOf(false) }
 
         LaunchedEffect(Unit) {
             val connectivityChecker = ConnectivityChecker()
-            val apiKey = "sk-proj-u080kiFZ4ov0dgsNU9QYT3BlbkFJ1ROx50wwvPtKgutWRFXm"
+            val apiKey = ApiKey.API_KEY
             isInternetAvailable = connectivityChecker.isInternetAvailable(apiKey)
         }
 

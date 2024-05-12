@@ -18,7 +18,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,9 +45,9 @@ class ApologizeScreen : Screen {
     @Composable
     fun ApologizeScreen(modifier: Modifier) {
 
-        navigator = LocalNavigator.currentOrThrow
-
         val focusManager = LocalFocusManager.current
+
+        navigator = LocalNavigator.currentOrThrow
 
         var relationship by remember{ mutableStateOf("") }
         var natureOfTheMistake by remember{ mutableStateOf("") }
@@ -54,27 +60,62 @@ class ApologizeScreen : Screen {
                     value = relationship,
                     onValueChange = { relationship = it },
                     label = { Text(text = "Relationship with recipent.Is it your friend,colleague or family member", fontSize = 20.sp)},
-                    modifier = Modifier.width(1200.dp).padding(top = 120.dp)
+                    modifier = Modifier.width(1200.dp).padding(top = 160.dp).onPreviewKeyEvent {
+                        when {
+                            KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                                focusManager.moveFocus(FocusDirection.Next)
+                                true
+                            }
+                            else -> false
+                        }
+                    }
+
                 )
+
                 Spacer(modifier = Modifier.height(20.dp))
                 OutlinedTextField(
                     value = natureOfTheMistake,
                     onValueChange = { natureOfTheMistake = it },
                     label = { Text(text = "Describe the mistake that occured.Provide specific details what went wrong", fontSize = 20.sp)},
-                    modifier = Modifier.width(1200.dp)
+                    modifier = Modifier.width(1200.dp).onPreviewKeyEvent {
+                        when {
+                            KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                                focusManager.moveFocus(FocusDirection.Next)
+                                true
+                            }
+                            else -> false
+                        }
+                    }
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 OutlinedTextField(
                     value = commitmentToChange,
                     onValueChange = {commitmentToChange = it},
                     label = {Text(text = "Explain what you will do to correct the mistake",fontSize = 20.sp)},
-                    modifier = Modifier.width(1200.dp)
+                    modifier = Modifier.width(1200.dp).onPreviewKeyEvent {
+                        when {
+                            KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                                focusManager.moveFocus(FocusDirection.Next)
+                                true
+                            }
+                            else -> false
+                        }
+                    }
                 )
 
                 Button(
                     onClick = {navigator.push(ApologizeResultScreen(ApologizeData(relationship,natureOfTheMistake, commitmentToChange)))},
                     modifier = Modifier.width(200.dp).height(100.dp).padding(top = 60.dp).background(
-                        Color.Transparent)
+                        Color.Transparent).onPreviewKeyEvent {
+                        when {
+                            KeyEventType.KeyUp == it.type && Key.Tab == it.key -> {
+                                focusManager.moveFocus(FocusDirection.Next)
+                                true
+                            }
+
+                            else -> false
+                        }
+                    }
                 ){
                     Text(
                         text = "Submit"

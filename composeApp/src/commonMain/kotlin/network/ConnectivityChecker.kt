@@ -9,7 +9,7 @@ class ConnectivityChecker {
 
     suspend fun isInternetAvailable(apiKey: String): Boolean {
         return try {
-            val response: HttpResponse = client.get("https://api.openai.com/v1/engines") {
+            val response: HttpResponse = client.get("https://www.google.kz/") {
                 headers {
                     append(HttpHeaders.Authorization, "Bearer $apiKey")
                 }

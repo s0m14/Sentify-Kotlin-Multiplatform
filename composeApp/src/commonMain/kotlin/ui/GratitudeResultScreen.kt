@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -30,13 +31,14 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import data.GratitudeData
 import data.Message
+import network.ApiKey
 
 data class GratitudeResultScreen(val gratitudeData: GratitudeData) : Screen {
     val viewModel = GratitudeViewModel()
 
     private lateinit var navigator : Navigator
 
-    val prompt = "Make gratitude message. Here is details:" + gratitudeData.gratitudeEntry + "," + gratitudeData.reflection + "," + gratitudeData.dailyBlessing + "," + gratitudeData.simplePleasure
+    val prompt = "Make gratitude message. Here is details:" + gratitudeData.gratitudeEntry + "," + gratitudeData.reason + "," + gratitudeData.tone
     @Composable
     override fun Content() {
         HomeScreen().Content()
@@ -48,30 +50,12 @@ data class GratitudeResultScreen(val gratitudeData: GratitudeData) : Screen {
 
         messages.add(Message("user",prompt))
         LaunchedEffect(Unit){
-            viewModel.sendGratitude(message = messages,"sk-proj-u080kiFZ4ov0dgsNU9QYT3BlbkFJ1ROx50wwvPtKgutWRFXm")
+            viewModel.sendGratitude(message = messages,ApiKey.API_KEY)
             answer = viewModel.getContent().toString()
         }
 
-        Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize()) {
-            OutlinedTextField(
-                value = answer,
-                enabled = true,
-                onValueChange = {answer = it} ,
-                label = {
-                    Text(text = "Your message", fontSize = 50.sp)
-                },
-                textStyle = TextStyle(fontSize = 35.sp),
-                modifier = Modifier.width(1500.dp).height(300.dp).padding(top = 30.dp))
-
-            Button(
-                onClick = {navigator.pop()},
-                modifier = Modifier.width(200.dp).height(100.dp).padding(top = 60.dp).background(
-                    Color.Transparent)
-            ){
-                Text(
-                    text = "Go to Home Screen"
-                )
-            }
+        if(!answer.isEmpty()) {
+            ResultScreen(answer, navigator)
         }
     }
 }

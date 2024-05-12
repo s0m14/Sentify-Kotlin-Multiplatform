@@ -2,7 +2,6 @@ package data
 
 import model.Quotes
 
-data class Quotes(val text : String, val author : String)
 
 val quotes = listOf(
     Quotes("If you have the words, there's always a chance that you'll find the way.","― Seamus Heaney"),

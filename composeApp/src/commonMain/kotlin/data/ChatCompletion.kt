@@ -10,6 +10,6 @@ import kotlinx.serialization.Serializable
         val model: String,
         val choices: List<Choice>,
         val usage: Usage,
-        val system_fingerprint: String
+        val system_fingerprint: String?
     )
 
